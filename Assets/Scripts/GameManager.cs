@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private GameObject endPanel;
     public List<Figure> Circles;
     public List<Figure> Squares;
+    public List<Figure> Triangles;
     private Figure previousFiguraClick;
     private Figure nowFiguraClick;
     public void Start()
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
                 Circles.Add(figures[i]);
             if (figures[i].type == Figure.FigureType.square)
                 Squares.Add(figures[i]);
+            if (figures[i].type == Figure.FigureType.triangle)
+                Triangles.Add(figures[i]);
         }
     }
 
@@ -59,6 +62,16 @@ public class GameManager : MonoBehaviour
                     PlayerData.SetScore(PlayerData.GetScore() + 1);
                 }
             }
+
+            if (previousFiguraClick.type == Figure.FigureType.triangle && nowFiguraClick.type == Figure.FigureType.square)
+            {
+                Triangles.Remove(previousFiguraClick);
+                Destroy(previousFiguraClick.gameObject);
+                nowFiguraClick.Size /= previousFiguraClick.Size/2;
+                nowFiguraClick.Size = (nowFiguraClick.Size <= 0) ? 1 : nowFiguraClick.Size;
+                PlayerData.SetScore(PlayerData.GetScore() + 1);
+                PlayerData.SetEnergy(PlayerData.GetEnergy() - 1);
+            }
         }
 
         bool checkLosse = true;
@@ -70,6 +83,9 @@ public class GameManager : MonoBehaviour
                     checkLosse = false;
             }
         }
+        if (Triangles.Count > 0)
+            checkLosse = false;
+
         if (Circles.Count == 0)
         {
             Debug.Log("Win!");

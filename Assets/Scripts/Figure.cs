@@ -9,24 +9,13 @@ public class Figure : MonoBehaviour
     public enum FigureType
     {
         circle,
-        square
+        square,
+        triangle
     }
 
     public int Size = 10;
     public FigureType type;
     private float multiplierSize = 0.1f;
-
-    void Start()
-    {
-        if (Application.isPlaying)
-        {
-
-        }
-        else
-        {
-
-        }
-    }
 
     void Update()
     {
@@ -39,16 +28,6 @@ public class Figure : MonoBehaviour
                 transform.localScale = new Vector3(Size / (Mathf.Sqrt(2)) * multiplierSize, Size / (Mathf.Sqrt(2)) * multiplierSize, 1);
                 break;
         }
-
-        if (Application.isPlaying)
-        {
-
-        }
-        else
-        {
-            
-        }
-
         
     }
 }
