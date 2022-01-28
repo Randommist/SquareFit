@@ -27,6 +27,9 @@ public class Figure : MonoBehaviour
             case FigureType.square:
                 transform.localScale = new Vector3(Size / (Mathf.Sqrt(2)) * multiplierSize, Size / (Mathf.Sqrt(2)) * multiplierSize, 1);
                 break;
+            case FigureType.triangle:
+                transform.localScale = new Vector3(Size * multiplierSize, Size * multiplierSize, 1);
+                break;
         }
         
     }
