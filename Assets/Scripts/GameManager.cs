@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
                     previousFiguraClick.gameObject.transform.position = nowFiguraClick.gameObject.transform.position;
                     Circles.Remove(nowFiguraClick);
                     Squares.Remove(previousFiguraClick);
+                    DestroyImmediate(previousFiguraClick.GetComponent<Collider2D>());
+                    DestroyImmediate(nowFiguraClick.GetComponent<Collider2D>());
                     PlayerData.SetScore(PlayerData.GetScore() + 1);
                 }
             }
